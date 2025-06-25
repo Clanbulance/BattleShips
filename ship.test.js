@@ -3,7 +3,7 @@ const gameBoard = require("./gameBoard")
 
 
 describe("ship function",()=> {
-    const newShip = new ship("destroyer",4)
+    const newShip = new ship("destroyer",1,1,1,4)
     newShip.hasBeenShot()
     console.log(newShip)
 
@@ -19,7 +19,7 @@ describe("ship function",()=> {
     }),
 
     it("ship has length > 0",()=>{
-        expect(newShip.size).toBeGreaterThan(0);
+        expect(newShip.size()).toBeGreaterThan(0);
     }),
 
     it("has been hit 1 time/has hitter function",()=>{

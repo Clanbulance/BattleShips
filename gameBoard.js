@@ -8,8 +8,8 @@ class gameBoard{
         this.field = this.createboard();
     }
 
-    
-        createboard = function(){
+    // this creates an array of 10x10, we can use this as the gamboard to make it easier to visualize and reach it.
+        createboard(){
             const tempV = [];
             for (let i = 0;i < this.rows;i++){
                 const row =  []
@@ -19,6 +19,10 @@ class gameBoard{
                 tempV.push(row);
             }
             return tempV;
+        }
+
+        placeShip(){
+
         }
 
 

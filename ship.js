@@ -1,8 +1,11 @@
 class ship{
-    constructor(name,size,hit=0,){
+    constructor(name,startx,starty,endx,endy){
         this.name = name;
-        this.size = size;
-        this.hit = hit;
+        this.hit = 0;
+        this.startx = startx;
+        this.starty = starty;
+        this.endx = endx;
+        this.endy = endy;
     }
 
     hasBeenShot(){
@@ -11,6 +14,14 @@ class ship{
 
     isSunk(){
         return this.hit >= this.size;
+    }
+
+    size(startx, starty, endx, endy){
+        if (this.startx == this.endx){
+            return (this.endy - this.starty) + 1
+        } else {
+            return (this.endx - this.startx) + 1
+        }
     }
 }
 
