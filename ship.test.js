@@ -5,6 +5,11 @@ const gameBoard = require("./gameBoard")
 describe("ship function",()=> {
     const newShip = new ship("destroyer",1,1,1,4)
     newShip.hasBeenShot()
+    newShip.hasBeenShot()
+    newShip.hasBeenShot()
+    newShip.hasBeenShot()
+    newShip.hasBeenShot()
+    newShip.hasBeenShot()
     console.log(newShip)
 
     it("the Class is there",()=>{
@@ -19,15 +24,15 @@ describe("ship function",()=> {
     }),
 
     it("ship has length > 0",()=>{
-        expect(newShip.size()).toBeGreaterThan(0);
+        expect(newShip.size()).toBe(4);
     }),
 
     it("has been hit 1 time/has hitter function",()=>{
-        expect(newShip.hit).toBe(1);
+        expect(newShip.hit).toBeGreaterThan(1);
     }),
 
     it("has sunken status",()=>{
-        expect(newShip.isSunk()).toBe(false);
+        expect(newShip.isSunk()).toBe(true);
     })
 
 
@@ -36,7 +41,7 @@ describe("ship function",()=> {
 
 describe("Gameboard",()=>{
     const board = new gameBoard();
-    console.log(board.field)
+    const newShip = new ship("destroyer",1,1,1,4);
     it("its a function",()=> {
         expect(typeof gameBoard).toBe("function");
     }),
@@ -46,8 +51,28 @@ describe("Gameboard",()=>{
 
     it("gameboard array is generated",()=> {
         expect(Array.isArray(board.field)).toBe(true);
-    })
+    }),
+    it("ship placed in array?",() => {
+            board.placeShip(newShip);
+            console.log(board.field);
+            board.visualize();
+            expect(board.field[1][1]).toBe("destroyer");
+            expect(board.field[2][1]).toBe("destroyer");
+            expect(board.field[3][1]).toBe("destroyer");
+            expect(board.field[4][1]).toBe("destroyer");
+    }),
 
+    it("there's a receive attack function",()=>{
+        expect(typeof board.receiveAttack).toBe("function");
+    }),
+
+    it("receiveattack did hit",()=>{
+        expect(board.receiveAttack(2,1)).toBe("HIT ON Destroyer");
+    }),
+  
+    it("receiveattack did MISS",()=>{
+        expect(board.receiveAttack(4,4)).toBe("MISS");
+    })
 });
 
 
