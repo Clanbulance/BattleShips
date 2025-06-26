@@ -13,7 +13,7 @@ class ship{
     }
 
     isSunk(){
-        return this.hit >= this.size;
+        return this.hit >= this.size();
     }
 
     size(startx, starty, endx, endy){
