@@ -21,10 +21,26 @@ class gameBoard{
             return tempV;
         }
 
-        placeShip(){
+        placeShip(shipname,startx, starty, endx, endy){
+            if(shipname.startx == shipname.endx){
+                for (let i = shipname.starty;i <= shipname.endy; i++){
+                    this.field[i][shipname.startx] = shipname.name;
+                }
+            }
 
         }
 
+        visualize(){
+            console.log("0 1 2 3 4 5 6 7 8 9");
+            this.field.forEach((row, y) => {
+              const line = row.map(cell => cell ? "🛳️" : "🌊").join(" ");
+              console.log(`${y} `.padStart(2, ' ') + line);
+            });
+        }
+
+        receiveAttack(x,y){
+            return this.field[x][y] != null ? "HIT ON Destroyer" : "MISS"
+        }
 
         
     }
