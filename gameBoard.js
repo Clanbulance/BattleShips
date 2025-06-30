@@ -6,6 +6,9 @@ class gameBoard{
         this.rows = 10;
         this.cols = 10;
         this.field = this.createboard();
+        this.misses = 0
+        this.ships = []
+        this.shipsdead = false
     }
 
     // this creates an array of 10x10, we can use this as the gamboard to make it easier to visualize and reach it.
@@ -24,22 +27,32 @@ class gameBoard{
         placeShip(shipname,startx, starty, endx, endy){
             if(shipname.startx == shipname.endx){
                 for (let i = shipname.starty;i <= shipname.endy; i++){
-                    this.field[i][shipname.startx] = shipname.name;
+                    this.field[i][shipname.startx] = shipname;
                 }
             }
 
         }
 
-        visualize(){
-            console.log("0 1 2 3 4 5 6 7 8 9");
-            this.field.forEach((row, y) => {
-              const line = row.map(cell => cell ? "🛳️" : "🌊").join(" ");
-              console.log(`${y} `.padStart(2, ' ') + line);
-            });
+        receiveAttack(x,y){
+            if  (this.field[x][y] != null){
+                const target = this.field[x][y];
+                console.log(target)
+                target.hasBeenShot()
+
+                return `HIT ON ${target.name}`
+
+            }else{
+                this.misses++
+                return this.misses
+            }
+
         }
 
-        receiveAttack(x,y){
-            return this.field[x][y] != null ? "HIT ON Destroyer" : "MISS"
+        allShipsDead(){
+            
+            this.ships.forEach(ship => ship.isSunk() ? this.shipsdead = true : this.shipsdead = false)
+            return this.shipsdead
+
         }
 
         
