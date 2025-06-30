@@ -34,14 +34,14 @@ describe("ship function",()=> {
     it("has sunken status",()=>{
         expect(newShip.isSunk()).toBe(true);
     })
-
-
 })
 
 
 describe("Gameboard",()=>{
     const board = new gameBoard();
     const newShip = new ship("destroyer",1,1,1,4);
+    board.ships.push(newShip)
+
     it("its a function",()=> {
         expect(typeof gameBoard).toBe("function");
     }),
@@ -55,11 +55,10 @@ describe("Gameboard",()=>{
     it("ship placed in array?",() => {
             board.placeShip(newShip);
             console.log(board.field);
-            board.visualize();
-            expect(board.field[1][1]).toBe("destroyer");
-            expect(board.field[2][1]).toBe("destroyer");
-            expect(board.field[3][1]).toBe("destroyer");
-            expect(board.field[4][1]).toBe("destroyer");
+            expect(board.field[1][1].name).toBe("destroyer");
+            expect(board.field[2][1].name).toBe("destroyer");
+            expect(board.field[3][1].name).toBe("destroyer");
+            expect(board.field[4][1].name).toBe("destroyer");
     }),
 
     it("there's a receive attack function",()=>{
@@ -67,11 +66,26 @@ describe("Gameboard",()=>{
     }),
 
     it("receiveattack did hit",()=>{
-        expect(board.receiveAttack(2,1)).toBe("HIT ON Destroyer");
+        expect(board.receiveAttack(2,1)).toBe("HIT ON destroyer");
     }),
-  
-    it("receiveattack did MISS",()=>{
-        expect(board.receiveAttack(4,4)).toBe("MISS");
+
+    it("hasbeenshot has been called",()=>{
+        expect(newShip.hit).toBe(1);
+    }),
+    it("receiveattack has missed",()=>{
+        expect(board.receiveAttack(0,0)).toBe(1)
+    }),
+
+    it("there's a ship saved in gameboard.ships",()=>{
+        console.log(board);
+        expect(board.ships[0]).toBe(newShip)
+    }),
+
+    it("all ships from board are sunken",()=>{
+        board.receiveAttack(1,1)
+        board.receiveAttack(3,1)
+        board.receiveAttack(4,1)
+        expect(board.allShipsDead()).toBe(true);
     })
 });
 

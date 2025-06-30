@@ -1,3 +1,6 @@
+const gameBoard = require("./gameBoard")
+
+
 class ship{
     constructor(name,startx,starty,endx,endy){
         this.name = name;
