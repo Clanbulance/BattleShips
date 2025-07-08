@@ -8,14 +8,35 @@ html, body {
 
 body {
     display: grid;
-    border:2px solid red;
+    grid-template-rows: 10% 90%;
+    grid-template-areas: 
+    "topBar"
+    "playField"
+    ;
 }
 
 
 .topbar {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: topBar;
 }
 
 .playfield {
+    grid-area: playField;
+    border:var(--test-border);
+    display: flex;
+}
 
+.playfield div{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+:root {
+    --test-border: 2px solid red;
 }
