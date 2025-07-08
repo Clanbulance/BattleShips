@@ -12,4 +12,8 @@ function consolePlayers(){
     console.log(`He will be facing: ${p2Name.name}`)
 }
 
-export default consolePlayers
+function initiateGame(){
+    console.log("test")
+}
+
+export  {consolePlayers,initiateGame}

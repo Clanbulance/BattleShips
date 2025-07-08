@@ -25,7 +25,7 @@ body {
 
 .playfield {
     grid-area: playField;
-    border:var(--test-border);
+
     display: flex;
 }
 
@@ -34,7 +34,42 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap:12px;
+
 }
+
+
+.playfield .userpanel{
+    display: flex;
+    flex-direction: column;
+    border:var(--test-border);
+    
+
+}
+
+.botpanel{
+    border:var(--test-border);
+}
+
+
+
+
+
+
+
+
+
+.playfield .userpanel button{
+    width: 180px;
+    height: 50px;
+}
+
+
+
+
+
+
+
 
 
 :root {
