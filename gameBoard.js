@@ -1,7 +1,7 @@
-const ship = require("./ship.js");
+import ship from "./ship.js";
 
 
-class gameBoard{
+export default class gameBoard{
     constructor(){
         this.rows = 10;
         this.cols = 10;
@@ -58,8 +58,3 @@ class gameBoard{
         
     }
     
-
-
-
-module.exports = gameBoard
-

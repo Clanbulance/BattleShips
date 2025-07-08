@@ -9,7 +9,6 @@ html, body {
 body {
     display: grid;
     border:2px solid red;
-    grid-template-areas: ;
 }
 
 

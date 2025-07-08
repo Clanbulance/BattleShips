@@ -1,8 +1,8 @@
-const ship = require("./ship.js")
-const gameBoard = require("./gameBoard")
+import ship from "./ship.js";
+import gameBoard from "./gameBoard.js";
 
 
-class player{
+export default class player{
     constructor(name,type){
         this.name = name;
         this.type = type; //real player or pc

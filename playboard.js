@@ -1,10 +1,10 @@
-const ship = require("./ship.js")
-const gameBoard = require("./gameBoard")
-const player = require("./players.js")
+import ship from "./ship.js";
+import gameBoard from "./gameBoard.js";
+import player from "./players.js";
 
 
 const userInput = document.querySelector("#username")
 
-userInput.style.color  = "red";
+userInput.style.backgroundColor  = "red";
 
 console.log(userInput)
