@@ -51,12 +51,21 @@ function createGameContainer(playername){
     return [gameContainer,scoreContainer]
 }
 
+//helperfunction to create the GRID from array
+// we will use this helper function to create cells so we can then append the cells to the field
+function createCell(x,y){
+    const cell = document.createElement("div")
+    cell.classList.add("cell");
+    cell.dataset.x = x;
+    cell.dataset.y = y;
+
+    return cell
+}
 
 
 //Both players havea seperate gameboard. We need to create visuals for these arrays inside of:
 // "#adad-grid" *& #p2Name.namn+"grid"
 function createBoxFromArray(array){
-   array.forEach(player => console.log(player.board)) 
 
    //set variables
    const p1grid = document.querySelector(`#${p1Name.name}-grid`)

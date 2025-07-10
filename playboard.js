@@ -11,5 +11,5 @@ const sbmUserName = document.querySelector(".playfield .userpanel button")
 sbmUserName.addEventListener("click",() => {
     consolePlayers()
     initiateGUI()
-    createBoxFromArray(players)
+    createBoxFromArray()
 })
