@@ -1,9 +1,14 @@
-html, body {
+* {
     box-sizing: border-box;
-    width:100%;
-    height: 100%;
     margin: 0;
     padding: 0;
+}
+
+html, body {
+    box-sizing: border-box;
+    width:100vw;
+    height: 100vh;
+
 }
 
 body {
@@ -25,11 +30,10 @@ body {
 
 .playfield {
     grid-area: playField;
-
     display: flex;
 }
 
-.playfield div{
+.playfield .side{
     width: 50%;
     display: flex;
     justify-content: center;
@@ -42,21 +46,40 @@ body {
 .playfield .userpanel{
     display: flex;
     flex-direction: column;
-    border:var(--test-border);
+
+}
+
+
+.gameGUI{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-rows: 10% 90%;
+    grid-template-columns: 50vw;
+    grid-template-areas: 
+    "name"
+    "playbox"
+    ;
+ 
+}
+
+.name{
+    grid-area: name;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border:2px dotted green;
+    width: 100%;
+    height: 100%;
     
-
 }
 
-.botpanel{
-    border:var(--test-border);
+.playbox{
+    grid-area: playbox;
+    width:100%;
+    height: 100%;
+    border:2px dotted red;
 }
-
-
-
-
-
-
-
 
 
 .playfield .userpanel button{
