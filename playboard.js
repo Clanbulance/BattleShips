@@ -1,7 +1,7 @@
 import ship from "./ship.js";
 import gameBoard from "./gameBoard.js";
 import player from "./players.js";
-import {consolePlayers,initiateGUI,createBoxFromArray, players} from "./domManager.js"
+import {consolePlayers,initiateGUI,createBoxFromArray, players,addShipsInGrid} from "./domManager.js"
 
 
 
@@ -12,4 +12,5 @@ sbmUserName.addEventListener("click",() => {
     consolePlayers()
     initiateGUI()
     createBoxFromArray()
+    addShipsInGrid()
 })
