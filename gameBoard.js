@@ -24,16 +24,16 @@ export default class gameBoard{
             return tempV;
         }
 
-placeShip(ship, shipname, startx, starty, endx, endy) {
-    if (startx === endx) {
+placeShip(ship) {
+    if (ship.startx === ship.endx) {
         // Vertical placement
-        for (let y = starty; y <= endy; y++) {
-            this.field[y][startx] = shipname;
+        for (let y = ship.starty; y <= ship.endy; y++) {
+            this.field[y][ship.startx] = ship.name;
         }
-    } else if (starty === endy) {
+    } else if (ship.starty === ship.endy) {
         // Horizontal placement
-        for (let x = startx; x <= endx; x++) {
-            this.field[starty][x] = shipname;
+        for (let x = ship.startx; x <= ship.endx; x++) {
+            this.field[ship.starty][x] = ship.name;
         }
     } else {
         console.error("Diagonal placement not supported");
