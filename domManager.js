@@ -8,6 +8,9 @@ const userpanel = document.querySelector("#userpanel")
 const botpanel = document.querySelector("#botpanel")
 const players = [];
 
+const newShip = new ship("destroyer",1,1,1,4)
+
+
 // create the players from the inputfields and add them to the array
 function consolePlayers(){
     p1Name = new player(userInput.value,"human")
@@ -16,6 +19,8 @@ function consolePlayers(){
     players.push(p2Name)
     console.log(`Player has chosen : ${p1Name.name}`)
     console.log(`He will be facing: ${p2Name.name}`)
+
+
 }
 
 
@@ -81,6 +86,25 @@ function createBoxFromArray(array){
         p2grid.append(createCell(i,j))
     }
    }
+}
+
+// we'll use this function to mark the ships in the array. we can use p1name.field to loop over and find the ship marks?
+// HOWEVER SHIPS NEED TO BE THERE OTHERWISE WE CANN"T FIND THEM,DUHE!
+// for now we just have a static: const newShip = new ship("destroyer",1,1,1,4) assigned at the top
+
+function addShipsInGrid(){
+    p1Name.board.placeShip(newShip,"destroyer",1,1,1,4)
+    p2Name.board.placeShip(newShip,"destroyer",1,1,1,4)
+
+    console.log(p1Name.board)
+    console.log(p2Name.board)
+
+
+    console.log(`${p1Name.name} ships:`)
+    p1Name.board.ships.forEach(ship => console.log(ship))
+    console.log(`${p2Name.name} ships:`)
+    p2Name.board.ships.forEach(ship => console.log(ship));
+
 
 
 }
@@ -112,4 +136,4 @@ function initiateGUI(){
 
 }
 
-export  {consolePlayers,initiateGUI,createBoxFromArray, players}
+export  {consolePlayers,initiateGUI,createBoxFromArray, players,addShipsInGrid}
