@@ -26,13 +26,16 @@ We want the usernames to be on top of their playing fields
 Then we want to make it so we have a grid for both players
 
 */
+
 // helperfunction to test
 function createPanelContent(playerobjectname){
     const namefield = document.createElement('div');
     namefield.classList.add("name")
+
     const playbox = document.createElement('div');
     playbox.classList.add("playbox")
     playbox.id =  playerobjectname
+
     return [namefield,playbox]
 }
 
@@ -46,9 +49,9 @@ function createGameContainer(playername){
     scoreContainer.classList.add("scoreContainer");
 
     gameContainer.id = playername+"-grid"
-    scoreContainer.id = playername+"score"
+    scoreContainer.id = playername+"-score"
 
-    return [gameContainer,scoreContainer]
+    return [scoreContainer,gameContainer]
 }
 
 //helperfunction to create the GRID from array
@@ -65,15 +68,24 @@ function createCell(x,y){
 
 //Both players havea seperate gameboard. We need to create visuals for these arrays inside of:
 // "#adad-grid" *& #p2Name.namn+"grid"
+// we will case this function for both arrays (p1Name.field & p2Name.field)
 function createBoxFromArray(array){
 
    //set variables
    const p1grid = document.querySelector(`#${p1Name.name}-grid`)
    const p2grid = document.querySelector(`#${p2Name.name}-grid`)
 
+   for (let i = 0;i < 10;i++){
+    for (let j = 0;j < 10;j++){
+        p1grid.append(createCell(i,j))
+        p2grid.append(createCell(i,j))
+    }
+   }
+
 
 }
 
+// this will start the GUI creating
 function initiateGUI(){
     console.log("starting the initiateGame function")
 
