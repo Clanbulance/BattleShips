@@ -9,7 +9,7 @@ const botpanel = document.querySelector("#botpanel")
 const players = [];
 
 const newShip = new ship("destroyer",1,1,1,4)
-
+const scoutShip = new ship("scout",2,2,5,2)
 
 // create the players from the inputfields and add them to the array
 function consolePlayers(){
@@ -61,9 +61,10 @@ function createGameContainer(playername){
 
 //helperfunction to create the GRID from array
 // we will use this helper function to create cells so we can then append the cells to the field
-function createCell(x,y){
+function createCell(who,x,y){
     const cell = document.createElement("div")
     cell.classList.add("cell");
+    cell.dataset.player = who
     cell.dataset.x = x;
     cell.dataset.y = y;
 
@@ -82,8 +83,8 @@ function createBoxFromArray(array){
 
    for (let i = 0;i < 10;i++){
     for (let j = 0;j < 10;j++){
-        p1grid.append(createCell(i,j))
-        p2grid.append(createCell(i,j))
+        p1grid.append(createCell(p1Name.name,i,j))
+        p2grid.append(createCell(p2Name.name,i,j))
     }
    }
 }
@@ -92,21 +93,43 @@ function createBoxFromArray(array){
 // HOWEVER SHIPS NEED TO BE THERE OTHERWISE WE CANN"T FIND THEM,DUHE!
 // for now we just have a static: const newShip = new ship("destroyer",1,1,1,4) assigned at the top
 
+//helperfunction to loop over p1Name.board.field and reflect to GUI
+function gridToGUI(player) {
+    player.board.field.forEach((row, y) => {
+        row.forEach((cell, x) => {
+            if (cell !== null) {
+                const domCell = document.querySelector(`[data-player='${player.name}'][data-x='${x}'][data-y='${y}']`);
+                if (domCell) {
+                    domCell.innerHTML = "🚢";
+                } else {
+                    console.warn(`DOM cell not found for ${player.name} at (${x}, ${y})`);
+                }
+            }
+        });
+    });
+}
+
+
+
 function addShipsInGrid(){
-    p1Name.board.placeShip(newShip,"destroyer",1,1,1,4)
-    p1Name.board.placeShip(newShip,"scout",2,2,5,2)
-    p2Name.board.placeShip(newShip,"destroyer",1,1,1,4)
+    p1Name.board.placeShip(newShip)
+    p1Name.board.placeShip(scoutShip)
+
+    p2Name.board.placeShip(newShip)
 
     console.log(p1Name.board)
     console.log(p2Name.board)
 
-
+    // this can fosure fosure be removed later
     console.log(`${p1Name.name} ships:`)
     p1Name.board.ships.forEach(ship => console.log(ship))
     console.log(`${p2Name.name} ships:`)
     p2Name.board.ships.forEach(ship => console.log(ship));
 
+    //Now we need to loop over p1Name.board.field and reflect to GUI, helperfunction?
 
+    gridToGUI(p1Name)
+    gridToGUI(p2Name)
 
 }
 
