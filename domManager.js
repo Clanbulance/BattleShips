@@ -94,6 +94,7 @@ function createBoxFromArray(array){
 
 function addShipsInGrid(){
     p1Name.board.placeShip(newShip,"destroyer",1,1,1,4)
+    p1Name.board.placeShip(newShip,"scout",2,2,5,2)
     p2Name.board.placeShip(newShip,"destroyer",1,1,1,4)
 
     console.log(p1Name.board)
