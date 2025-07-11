@@ -24,12 +24,14 @@ export default class gameBoard{
             return tempV;
         }
 
-        placeShip(shipname,startx, starty, endx, endy){
-            if(shipname.startx == shipname.endx){
-                for (let i = shipname.starty;i <= shipname.endy; i++){
-                    this.field[i][shipname.startx] = shipname;
+        placeShip(ship,shipname,startx, starty, endx, endy){
+            if(startx == endx){
+                for (let i = starty;i <= endy; i++){
+                    this.field[i][startx] = shipname;
                 }
             }
+        this.ships.push(ship)
+
 
         }
 
