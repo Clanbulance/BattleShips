@@ -59,17 +59,30 @@ function createGameContainer(playername){
     return [scoreContainer,gameContainer]
 }
 
+// helperfunction called like shotsFire(p1Name,i,j)
+function shotsFired(who, x, y){
+
+}
+
 //helperfunction to create the GRID from array
 // we will use this helper function to create cells so we can then append the cells to the field
 function createCell(who,x,y){
     const cell = document.createElement("div")
     cell.classList.add("cell");
-    cell.dataset.player = who
+    cell.dataset.player = who.name
     cell.dataset.x = x;
     cell.dataset.y = y;
+    cell.addEventListener("click",() => {
+        console.log(`Attack on cell ${x}-${y}`)
+        // we need to call a helperfunction fuction that finds the ship (player.board.ship?)
+        // and calls the hasBeenShot from it
+        shotsFired(who,x,y)
+    })
 
     return cell
 }
+
+
 
 
 //Both players havea seperate gameboard. We need to create visuals for these arrays inside of:
@@ -83,8 +96,8 @@ function createBoxFromArray(array){
 
    for (let i = 0;i < 10;i++){
     for (let j = 0;j < 10;j++){
-        p1grid.append(createCell(p1Name.name,i,j))
-        p2grid.append(createCell(p2Name.name,i,j))
+        p1grid.append(createCell(p1Name,i,j))
+        p2grid.append(createCell(p2Name,i,j))
     }
    }
 }
