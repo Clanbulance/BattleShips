@@ -11,11 +11,18 @@ class ship{
     }
 
     hasBeenShot(){
+        console.log(this.hit+1)
         return this.hit++
+        
     }
 
-    isSunk(){
-        return this.hit >= this.size();
+    isSunk(){  
+        if (this.hit >= this.size()){
+            console.log("Help we're sinking!")
+            return true
+        } else {
+            return false
+        };
     }
 
     size(startx, starty, endx, endy){
@@ -25,6 +32,8 @@ class ship{
             return (this.endx - this.startx) + 1
         }
     }
+
+    
 }
 
 export default ship
