@@ -60,7 +60,12 @@ function createGameContainer(playername){
 }
 
 // helperfunction called like shotsFire(p1Name,i,j)
-function shotsFired(who, x, y){
+function shotsFired(who, x, y, e){
+    console.log(`shots fired on ${who.name} on ${x}-${y}`)
+    who.board.receiveAttack(x,y);
+    const domCell = document.querySelector(`[data-player='${player.name}'][data-x='${y}'][data-y='${x}']`)
+    
+
 
 }
 
@@ -72,11 +77,10 @@ function createCell(who,x,y){
     cell.dataset.player = who.name
     cell.dataset.x = x;
     cell.dataset.y = y;
-    cell.addEventListener("click",() => {
-        console.log(`Attack on cell ${x}-${y}`)
+    cell.addEventListener("click",(e) => {
         // we need to call a helperfunction fuction that finds the ship (player.board.ship?)
         // and calls the hasBeenShot from it
-        shotsFired(who,x,y)
+        shotsFired(who,x,y,e)
     })
 
     return cell
@@ -111,7 +115,7 @@ function gridToGUI(player) {
     player.board.field.forEach((row, y) => {
         row.forEach((cell, x) => {
             if (cell !== null) {
-                const domCell = document.querySelector(`[data-player='${player.name}'][data-x='${x}'][data-y='${y}']`);
+                const domCell = document.querySelector(`[data-player='${player.name}'][data-x='${y}'][data-y='${x}']`);
                 if (domCell) {
                     domCell.innerHTML = "🚢";
                 } else {
