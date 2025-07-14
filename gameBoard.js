@@ -12,17 +12,17 @@ export default class gameBoard{
     }
 
     // this creates an array of 10x10, we can use this as the gamboard to make it easier to visualize and reach it.
-        createboard(){
-            const tempV = [];
-            for (let i = 0;i < this.rows;i++){
-                const row =  []
-                for(let n = 0;n < this.cols;n++){
-                    row.push(null)
-                }
-                tempV.push(row);
+createboard(){
+        const tempV = [];
+        for (let i = 0;i < this.rows;i++){
+            const row =  []
+            for(let n = 0;n < this.cols;n++){
+                row.push(null)
             }
-            return tempV;
+            tempV.push(row);
         }
+        return tempV;
+}
 
 placeShip(ship) {
     if (ship.startx === ship.endx) {
@@ -42,28 +42,35 @@ placeShip(ship) {
     this.ships.push(ship);
 }
 
-        receiveAttack(x,y){
-            if  (this.field[x][y] != null){
-                const target = this.field[x][y];
-                console.log(target)
-                target.hasBeenShot()
-
-                return `HIT ON ${target.name}`
-
-            }else{
-                this.misses++
-                return this.misses
-            }
-
-        }
-
-        allShipsDead(){
+receiveAttack(x,y){
+        if  (this.field[x][y] != null){
+            const target = this.field[x][y];
+            console.log(`${target} has been hit!`)
+            this.ships.forEach(ship => {
+                if (ship.name == target){
+                    console.log(`calling hasBeenShot`)
+                    ship.hasBeenShot()
+                    ship.isSunk()
+                }
+            })
             
-            this.ships.forEach(ship => ship.isSunk() ? this.shipsdead = true : this.shipsdead = false)
-            return this.shipsdead
-
+            // I need to FIND the object with .name = target? and call hasBeenShot on it
+            return `HIT ON ${target.name}`
+        }else{
+            this.misses++
+            console.log(this.misses)
+            return this.misses
+            
         }
+    }
+
+allShipsDead(){
+            
+        this.ships.forEach(ship => ship.isSunk() ? this.shipsdead = true : this.shipsdead = false)
+        console.log("all ships dead!")
+        return this.shipsdead
+    }
 
         
-    }
+}
     
