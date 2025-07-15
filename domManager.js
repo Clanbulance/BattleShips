@@ -65,7 +65,6 @@ function shotsFired(who, x, y, e){
     console.log(`shots fired on ${who.name} on ${x}-${y}`)
     who.board.receiveAttack(who,x,y);
     const domCell = document.querySelector(`[data-player='${who.name}'][data-x='${x}'][data-y='${y}']`)
-    domCell.style.backgroundColor = "red"
 
 
 }
@@ -147,7 +146,7 @@ function addShipsInGrid(){
     //Now we need to loop over p1Name.board.field and reflect to GUI, helperfunction?
 
     gridToGUI(p1Name)
-    gridToGUI(p2Name)
+    //gridToGUI(p2Name)
 
 }
 
