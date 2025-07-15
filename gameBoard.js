@@ -42,20 +42,18 @@ placeShip(ship) {
     this.ships.push(ship);
 }
 
-receiveAttack(x,y){
+receiveAttack(who,x,y){
         if  (this.field[x][y] != null){
             const target = this.field[x][y];
             console.log(`${target} has been hit!`)
-            this.ships.forEach(ship => {
+            who.board.ships.forEach(ship => {
                 if (ship.name == target){
                     console.log(`calling hasBeenShot`)
                     ship.hasBeenShot()
                     ship.isSunk()
                 }
             })
-            
-            // I need to FIND the object with .name = target? and call hasBeenShot on it
-            return `HIT ON ${target.name}`
+    
         }else{
             this.misses++
             console.log(this.misses)
