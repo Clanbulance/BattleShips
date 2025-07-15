@@ -43,12 +43,12 @@ placeShip(ship) {
 }
 
 receiveAttack(who,x,y){
+    const domCell = document.querySelector(`[data-player='${who.name}'][data-x='${x}'][data-y='${y}']`)
         if  (this.field[x][y] != null){
-            const target = this.field[x][y];
-            console.log(`${target} has been hit!`)
+            const target = this. field[x][y];
+            domCell.innerHTML = "💥"
             who.board.ships.forEach(ship => {
                 if (ship.name == target){
-                    console.log(`calling hasBeenShot`)
                     ship.hasBeenShot()
                     ship.isSunk()
                 }
@@ -57,6 +57,7 @@ receiveAttack(who,x,y){
         }else{
             this.misses++
             console.log(this.misses)
+            domCell.innerHTML = "💦"
             return this.misses
             
         }
