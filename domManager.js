@@ -9,6 +9,7 @@ const botpanel = document.querySelector("#botpanel")
 const players = [];
 
 const newShip = new ship("destroyer",1,1,1,4)
+const newShip2 = new ship("destroyer",1,1,1,4)
 const scoutShip = new ship("scout",2,2,5,2)
 
 // create the players from the inputfields and add them to the array
@@ -62,8 +63,8 @@ function createGameContainer(playername){
 // helperfunction called like shotsFire(p1Name,i,j)
 function shotsFired(who, x, y, e){
     console.log(`shots fired on ${who.name} on ${x}-${y}`)
-    who.board.receiveAttack(x,y);
-    const domCell = document.querySelector(`[data-player='${player.name}'][data-x='${y}'][data-y='${x}']`)
+    who.board.receiveAttack(who,x,y);
+    const domCell = document.querySelector(`[data-player='${who.name}'][data-x='${y}'][data-y='${x}']`)
     
 
 
@@ -81,7 +82,7 @@ function createCell(who,x,y){
         // we need to call a helperfunction fuction that finds the ship (player.board.ship?)
         // and calls the hasBeenShot from it
         shotsFired(who,x,y,e)
-    })
+    }, {once: true })
 
     return cell
 }
@@ -132,7 +133,7 @@ function addShipsInGrid(){
     p1Name.board.placeShip(newShip)
     p1Name.board.placeShip(scoutShip)
 
-    p2Name.board.placeShip(newShip)
+    p2Name.board.placeShip(newShip2)
 
     console.log(p1Name.board)
     console.log(p2Name.board)
