@@ -22,6 +22,3 @@ sbmUserName.addEventListener("click",() => {
 })
 
 
-turn.addEventListener("change",() => {
-    console.log(`turn is changed to ${turn}`)
-})

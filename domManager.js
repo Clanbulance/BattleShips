@@ -2,13 +2,14 @@ import ship from "./ship.js";
 import gameBoard from "./gameBoard.js";
 import player from "./players.js";
 import { turnManager } from "./turnManager.js";
-import { turn } from "./turnManager.js";
+
 
 let p1Name,p2Name = ""
 const userInput = document.querySelector("#username")
 const userpanel = document.querySelector("#userpanel")
 const botpanel = document.querySelector("#botpanel")
 const players = [];
+
 
 const newShip = new ship("destroyer",1,1,1,4)
 const newShip2 = new ship("destroyer",1,1,1,4)
@@ -25,6 +26,7 @@ function consolePlayers(){
 
     return p1Name,p2Name
 }
+
 
 
 /*
@@ -53,21 +55,34 @@ function createGameContainer(playername){
     const gameContainer = document.createElement("div");
     const scoreContainer = document.createElement("div");
 
+    const hittrackertitle = document.createElement("div")
+    hittrackertitle.innerHTML = "Hits:";
+
+    const hittracker = document.createElement("div")
+    hittracker.innerHTML = "0";
+
+
+    scoreContainer.append(hittrackertitle,hittracker)
     gameContainer.classList.add("gameContainer");
     scoreContainer.classList.add("scoreContainer");
 
-    gameContainer.id = playername+"-grid"
-    scoreContainer.id = playername+"-score"
+    gameContainer.id = playername.name+"-grid"
+    scoreContainer.id = playername.name+"-score"
+    hittracker.id = playername.name+"-hittracker"
+    
 
     return [scoreContainer,gameContainer]
 }
+
+
+
+
 
 // helperfunction called like shotsFire(p1Name,i,j)
 function shotsFired(who, x, y, e){
     console.log(`shots fired on ${who.name} on ${x}-${y}`)
     who.board.receiveAttack(who,x,y);
     const domCell = document.querySelector(`[data-player='${who.name}'][data-x='${x}'][data-y='${y}']`)
-
 
 }
 
@@ -140,22 +155,15 @@ function addShipsInGrid(){
     p1Name.board.placeShip(newShip)
     p1Name.board.placeShip(scoutShip)
 
+    //p2Name.board.placeShip(newShip2)
     p2Name.board.placeShip(newShip2)
 
     console.log(p1Name.board)
     console.log(p2Name.board)
 
-    // this can fosure fosure be removed later
-    console.log(`${p1Name.name} ships:`)
-    p1Name.board.ships.forEach(ship => console.log(ship))
-    console.log(`${p2Name.name} ships:`)
-    p2Name.board.ships.forEach(ship => console.log(ship));
-
     //Now we need to loop over p1Name.board.field and reflect to GUI, helperfunction?
-
     gridToGUI(p1Name)
-    //gridToGUI(p2Name)
-
+    
 }
 
 // this will start the GUI creating
@@ -180,8 +188,8 @@ function initiateGUI(){
 
     //call the helperfunction to create gameContainer element on :
     // #userpanel p1Name.name / #botpanel p2Name.name
-    document.querySelector("#userpanel .playbox").append(...createGameContainer(p1Name.name))
-    document.querySelector("#botpanel .playbox").append(...createGameContainer(p2Name.name))
+    document.querySelector("#userpanel .playbox").append(...createGameContainer(p1Name))
+    document.querySelector("#botpanel .playbox").append(...createGameContainer(p2Name))
 
 
 

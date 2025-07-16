@@ -1,4 +1,8 @@
 import gameBoard from "./gameBoard.js";
+ 
+
+
+
 
 class ship{
     constructor(name,startx,starty,endx,endy){
@@ -10,7 +14,7 @@ class ship{
         this.endy = endy;
     }
 
-    hasBeenShot(){
+    hasBeenShot(who){
         console.log(this.hit+1)
         return this.hit++
         

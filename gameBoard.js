@@ -49,7 +49,7 @@ receiveAttack(who,x,y){
             domCell.innerHTML = "💥"
             who.board.ships.forEach(ship => {
                 if (ship.name == target){
-                    ship.hasBeenShot()
+                    ship.hasBeenShot(who)
                     ship.isSunk()
                 }
             })
@@ -61,14 +61,16 @@ receiveAttack(who,x,y){
             return this.misses
             
         }
+
+        this.allShipsDead(); // ✅ Refresh the status after every hit
     }
 
-allShipsDead(){
-            
-        this.ships.forEach(ship => ship.isSunk() ? this.shipsdead = true : this.shipsdead = false)
-        console.log("all ships dead!")
-        return this.shipsdead
-    }
+allShipsDead() { 
+    if (this.ships.length === 0) return false; // prevent false win
+    const allDead = this.ships.every(ship => ship.isSunk());
+    this.shipsdead = allDead;
+    return allDead;
+}
 
         
 }

@@ -33,7 +33,18 @@ function turnManager(whodidjustclick){
         changeTurnIndicator(turn)
         turnVisuals(turn)
 
-         if (turn === p2Name.name) {
+        
+        if (p1Name.board.allShipsDead()) {
+            alert("p2 has won!");
+            return;
+        }
+        if (p2Name.board.allShipsDead()) {
+            alert("p1 has won!");
+            return;
+        }
+        
+
+        if (turn === p2Name.name) {
         // Add a delay so the shot isn't immediate
         setTimeout(() => {
             botClick();
