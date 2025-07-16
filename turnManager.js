@@ -7,27 +7,44 @@ const turnIndicator = document.querySelector(".topbar")
 // we'll store the logic in here
 // if no one has clicked yet, it's p1's turn
 
-let turn
+let turn;
+
+// helper function for the robot to attack on p1 board
+function botClick(){
+    let x = Math.floor(Math.random() * 10);
+    let y = Math.floor(Math.random() * 10);
+
+    p1Name.board.receiveAttack(p1Name,x,y)
+    console.log(`BOT just shot at ${x},${y}`)
+    turnManager(p1Name)
+
+}
 
 function turnManager(whodidjustclick){
     let turn = whodidjustclick.name
 
     if(whodidjustclick.name == p1Name.name){
         turn = p1Name.name 
-
             }
         else{
         turn = p2Name.name
-
+        
         };
         changeTurnIndicator(turn)
         turnVisuals(turn)
-        // if turn  == p1Name -> disable p1 board 
-        
+
+         if (turn === p2Name.name) {
+        // Add a delay so the shot isn't immediate
+        setTimeout(() => {
+            botClick();
+        }, 1000); // 1 second delay
+    }
+
 
     return turn
 
 }
+
 
 
 
@@ -72,4 +89,6 @@ const botname = document.querySelector("#botpanel .name")
 
 }
 
-export {turnManager,turn}
+
+
+export {turnManager,turn,toggleBoard}
