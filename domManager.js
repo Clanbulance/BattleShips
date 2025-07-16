@@ -1,6 +1,8 @@
 import ship from "./ship.js";
 import gameBoard from "./gameBoard.js";
 import player from "./players.js";
+import { turnManager } from "./turnManager.js";
+import { turn } from "./turnManager.js";
 
 let p1Name,p2Name = ""
 const userInput = document.querySelector("#username")
@@ -21,7 +23,7 @@ function consolePlayers(){
     console.log(`Player has chosen : ${p1Name.name}`)
     console.log(`He will be facing: ${p2Name.name}`)
 
-
+    return p1Name,p2Name
 }
 
 
@@ -81,6 +83,12 @@ function createCell(who,x,y){
         // we need to call a helperfunction fuction that finds the ship (player.board.ship?)
         // and calls the hasBeenShot from it
         shotsFired(who,x,y,e)
+    }, {once: true })
+        
+    cell.addEventListener("click",(e) => {
+        // eventlistener to soo who's clicking
+        turnManager(who)
+        console.log(`what's who:${who.name}`)
     }, {once: true })
 
     return cell
@@ -175,6 +183,10 @@ function initiateGUI(){
     document.querySelector("#userpanel .playbox").append(...createGameContainer(p1Name.name))
     document.querySelector("#botpanel .playbox").append(...createGameContainer(p2Name.name))
 
+
+
 }
 
-export  {consolePlayers,initiateGUI,createBoxFromArray, players,addShipsInGrid}
+export  {consolePlayers,initiateGUI,createBoxFromArray, players,addShipsInGrid,
+    p1Name,p2Name
+}
