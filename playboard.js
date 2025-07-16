@@ -2,7 +2,7 @@ import ship from "./ship.js";
 import gameBoard from "./gameBoard.js";
 import player from "./players.js";
 import {p1Name,p2Name,consolePlayers,initiateGUI,createBoxFromArray, players,addShipsInGrid} from "./domManager.js"
-import { turnManager } from "./turnManager.js";
+import { turnManager, toggleBoard, turn } from "./turnManager.js";
 
 
 
@@ -17,6 +17,11 @@ sbmUserName.addEventListener("click",() => {
     turnManager(p1Name)
     createBoxFromArray()
     addShipsInGrid()
+    toggleBoard(p2Name.name, true);
+    toggleBoard(p1Name.name, false);
 })
 
 
+turn.addEventListener("change",() => {
+    console.log(`turn is changed to ${turn}`)
+})
